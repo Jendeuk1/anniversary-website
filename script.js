@@ -1,5 +1,6 @@
 // Countdown Timer
 const countdownElement = document.getElementById('countdown');
+const specialMessage = document.getElementById('specialMessage');
 
 // Target Date
 const targetDate = new Date('2024-12-08T00:00:00').getTime();
@@ -16,9 +17,14 @@ function updateCountdown() {
     countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
     if (timeLeft < 0) {
+        // Hentikan countdown
+        clearInterval(countdownFunction);
         countdownElement.textContent = "It's our anniversary! 🎉";
+
+        // Menampilkan pesan spesial setelah countdown selesai
+        specialMessage.style.display = "block";
     }
 }
 
 // Update every second
-setInterval(updateCountdown, 1000);
+const countdownFunction = setInterval(updateCountdown, 1000);
